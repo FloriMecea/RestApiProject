@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 //import io.restassured.RestAssured;
@@ -12,16 +13,29 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 public class RestExampleTest {
-
+	
+	//public static String randomEmail() {
+//		return RandomStringUtils.randomAlphabetic(8).toLowerCase() + "@gmail.com";
+//	}
+	
+		
 	@Test
 	public void postATodo() {
 		// URL-ul unde vom face callul: https://keytodorestapi.herokuapp.com/
 		
-		//Json Object
+	//	System.out.println(randomEmail());
+	//	System.out.println(randomEmail());
+	//	System.out.println(randomEmail());
+	//	System.out.println(randomEmail());
+	//	System.out.println(randomEmail());
+
+		
+		//Json Object creat direct-versiunea1
 		JSONObject requestPayload =new JSONObject();
 		requestPayload.put("title", "Flori New Title");
 		requestPayload.put("body", "Flori New Body");
 		
+		//sau obiect json luat din fisier -versiunea2
 		File fisier= new File("data1.json");
 		
 		Response response=RestAssured

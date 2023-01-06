@@ -25,32 +25,40 @@ import org.json.simple.JSONObject;
  */
 
 public class CRUDExamples {
-	JSONObject body;
+	JSONObject body,body2;
 	String id;
 	
 	@BeforeClass
 	public void setup() {
-		RestAssured.baseURI="https://keytodorestapi.herokuapp.com";
+		RestAssured.baseURI="https://keytodorestapi.herokuapp.com/";
 		body=new JSONObject();
+		//am pus in interiorul jsonului cele 2 campuri de care am nevoie
 		Faker fake=new Faker();  //cu asta generam stringuri
 		body.put("title", fake.cat().name());
 		body.put("body", fake.chuckNorris().fact());
+		
+		body2 = new JSONObject();
+
+		body2.put("title", fake.cat().name());
+		body2.put("body", fake.chuckNorris().fact());
 	}
 
 	@Test(priority=1)
 	public void postATodoMessageTest() {
-		given().
-		    contentType(ContentType.JSON).
-		  //  body("{\"title\":\"flori\",\"body\":\"flori body\"}").
-		    body(body.toJSONString()).
 		
-		    when().
-		       post("api/save").
-		    then().
-		       statusCode(200).
-		       body("info",equalTo("Todo saved! Nice job!")).
-		       body("id",anything()).
-		       log().all();
+		Response obj = given().  //obiectul json returnat dupa aplicarea comenzii post
+			contentType(ContentType.JSON).
+			body(body.toJSONString()).
+			
+			when().
+				post("api/save").
+			then().
+				statusCode(200).
+				body("info",equalTo("Todo saved! Nice job!")).
+				body("id",anything()).
+				log().all().  //logam in interiorul consolei raspunsul intors
+				extract().response();
+		id=obj.jsonPath().getString("id");
 		    
 		    
 		    
@@ -63,21 +71,53 @@ public class CRUDExamples {
 				get("api").
 				then().
 				statusCode(200).
-				extract().
-				response();
+				extract().response();
 		
-		System.out.println(response.jsonPath().getString("_id[5]"));  //id-ul numarul 5
+		System.out.println(response.jsonPath().getString("_id[5]"));  //eg. id-ul numarul 5
 		id=response.jsonPath().getString("_id[5]");
+		System.out.println(response.asPrettyString());
+		
+		System.out.println(response.jsonPath().getString("_id")); //tot obiectul cu cate id-uri sunt
 		System.out.println(response.asPrettyString());
 		
 	}
 	
 	@Test(priority=3)
+	public void updateTodo() {
+		
+		Response response=given(). 
+				body(body2.toJSONString()).
+				when(). 
+					put("api/todos/" + id). 
+				then(). 
+				extract().response();
+		
+		System.out.println(response.asPrettyString());
+		System.out.println(body2.toJSONString());
+	}
+	
+/*	@Test(priority=3)
+	public void getOneTodos() {
+		
+		Response response = given().
+				get("api/"+id). 
+				then().
+				statusCode(200). 
+				extract().
+				response();
+		
+		System.out.println(response.jsonPath().getString("_id"));
+		System.out.println(response.asPrettyString());
+	}
+	 */
+	@Test(priority=4)
 	public void DeleteTodo() {
 		given().
 		delete("api/delete/"+id).
 		then().
 		statusCode(200);
 	}
+
+	
 		
 }
