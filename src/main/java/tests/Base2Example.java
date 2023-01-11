@@ -11,12 +11,14 @@ import utils.DataBuilder;
 
 public class Base2Example extends BaseComponent2 {
 
+	// URL: https://keytrcrud.herokuapp.com/ 
+
 	public String id;
 	public String email;
 	
 	@Test (priority=1)
 	public void postUser() {
-		Response result=doPostRequest(DataBuilder.buildUser().toJSONString(), 201);
+		Response result=doPostRequest(DataBuilder.buildUser().toJSONString());
 		System.out.println(result.asPrettyString());
 		System.out.println(result.asString());
 		
