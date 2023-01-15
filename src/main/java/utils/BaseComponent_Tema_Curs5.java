@@ -33,14 +33,14 @@ public class BaseComponent_Tema_Curs5 {
 		return result;
 		
 	}
-public static Response doPutRequest(String path, String body, int statusCode) {
+public static Response doPutRequest(String path, String body, int statusCode, String id) {
 		
 		Response result = 
 				given().
 					contentType(ContentType.JSON).
 					body(body).
 				when().
-					put(path).
+					put(path+id).
 				then().
 					statusCode(statusCode).
 					extract().response();
