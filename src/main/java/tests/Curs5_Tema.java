@@ -96,13 +96,17 @@ public class Curs5_Tema extends BaseComponent_Tema_Curs5{
 		System.out.println("-----------------------End Get request for updated user---------------------");
 	}
 	
-//	@Test(priority = 5)
+	@Test(priority = 5)
 	public void deleteUser() {
 		
-		Response response = doDeleteRequest("api/users/", id, 200);
-		assertEquals(response.jsonPath().get("result._id"), id);
-	//	assertEquals(response.jsonPath().getString("msg"), "It has been deleted.");
-		assertEquals(response.jsonPath().getString("msg"), "Passenger data deleted successfully.");
+		System.out.println("-----------------------Start Delete request for a user---------------------"); 
+		System.out.println(" id-ul userului ce va fi sters este: " +id); 
+		Response response = doDeleteRequest("v1/passenger/", id, 200);
+		System.out.println("response body este: " +response.asPrettyString());
+			
+		assertEquals(response.jsonPath().getString("message"), "Passenger data deleted successfully.");
+		
+		System.out.println("-----------------------End Delete request for a user---------------------"); 
 	}
 	
 }
