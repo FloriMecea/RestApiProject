@@ -7,13 +7,13 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
-public class BaseComponent_Tema_Curs6 {
+public class BaseComponent_Tema_Curs6_Part1 {
 	
 	
 	@BeforeClass
 	public void setup() {
 		
-		RestAssured.baseURI = "https://keytodorestapi.herokuapp.com/";	
+		RestAssured.baseURI = "https://fakerestapi.azurewebsites.net/";	
 
 	}
 	
@@ -33,14 +33,14 @@ public class BaseComponent_Tema_Curs6 {
 		return result;
 		
 	}
-public static Response doPutRequest(String path, String body, int statusCode) {
+public static Response doPutRequest(String path, String body, int statusCode, String id) {
 		
 		Response result = 
 				given().
 					contentType(ContentType.JSON).
 					body(body).
 				when().
-					put(path).
+					put(path+id).
 				then().
 					statusCode(statusCode).
 					extract().response();
@@ -63,20 +63,6 @@ public static Response doPutRequest(String path, String body, int statusCode) {
 		return result;
 	}
 	
-	public static Response doDeleteRequest(String path, String id, int statusCode) {
-		
-		Response result = 
-				given().
-					contentType(ContentType.JSON).
-				when().
-					delete(path + id).
-				then().
-					statusCode(statusCode).
-					extract().response();
-			
-		return result;
-	}
-	
 	public static Response doGetAllRequest(String path, int statusCode) {
 		
 		Response result = 
@@ -91,5 +77,18 @@ public static Response doPutRequest(String path, String body, int statusCode) {
 		return result;
 	}
 	
+	public static Response doDeleteRequest(String path, String id, int statusCode) {
+		
+		Response result = 
+				given().
+					contentType(ContentType.JSON).
+				when().
+					delete(path + id).
+				then().
+					statusCode(statusCode).
+					extract().response();
+			
+		return result;
+	}
 
 }

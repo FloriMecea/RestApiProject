@@ -12,9 +12,9 @@ import com.github.javafaker.Faker;
 
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import utils.BaseComponent_Tema_Curs6;
+import utils.BaseComponent_Tema_Curs6_Part1;
 
-public class Curs6_Tema extends BaseComponent_Tema_Curs6{
+public class Curs6_Tema1 extends BaseComponent_Tema_Curs6_Part1{
     String id, name1;
  
 	
@@ -36,6 +36,5 @@ public class Curs6_Tema extends BaseComponent_Tema_Curs6{
 	//	System.out.println(jsonPath.getString("title"));
 		assertEquals(allBooks.size(),10);
 		System.out.println("-----------------------End Get request---------------------");
-	}
-	
+	}	
 }
