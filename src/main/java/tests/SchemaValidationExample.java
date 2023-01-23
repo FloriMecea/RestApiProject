@@ -15,7 +15,7 @@ public class SchemaValidationExample {
 	@Test
 	public static void validateSchema() {
 		Response result=given()
-				.get("https://keytrcrud.herokuapp.com/api/users/63bb2e0b648a2d001602690d")
+				.get("https://keytrcrud.herokuapp.com/api/users/63c5977d1941aa0015fa181b")
 				.then()
 				.statusCode(200)
 				.log().all()

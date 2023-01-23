@@ -13,14 +13,10 @@ public class DataBuilder_Curs6_Tema2 {
 		  JSONObject bodyBuilder =  new JSONObject();
 	Faker faker = new Faker();
 	
-	//String email = faker.internet().emailAddress();
+	
 	bodyBuilder.put("body", faker.chuckNorris().fact());
 	bodyBuilder.put("title", faker.name().firstName());
-	//bodyBuilder.put("email",email );
-	//bodyBuilder.put("age", faker.number().numberBetween(5, 130));
-	//bodyBuilder.put("gender", "m");
-	
-//	System.out.println(bodyBuilder);
+
 	
     try(FileWriter file= new FileWriter("todo.json")){
 		   file.write(bodyBuilder.toJSONString());
