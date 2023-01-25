@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import utils.DataBuilder;
 import utils.DataBuilder_Tema9;
 
 public class Curs9_Tema {
@@ -75,6 +74,7 @@ public class Curs9_Tema {
 	  	
 		System.out.println("id-ul este: "+id_post3);
 		assertThat(id_post3, is(not(equalTo (null))));
+		//assertThat(id_post3, "aaa");
 	
 	}
 	

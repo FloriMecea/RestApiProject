@@ -49,7 +49,8 @@ public class Curs8_Tema2 {
 	   
 	   String capacity=jsonPath.getString("cargo_capacity");
 	   System.out.println(capacity);
-	   assertThat(capacity, is(cargoCapacity()));
+	  // assertThat(capacity, is(cargoCapacity())); sau ca mai jos
+	   assertThat(capacity, cargoCapacity());
 	   
 }  
 	

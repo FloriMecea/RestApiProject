@@ -10,23 +10,6 @@ import utils.DataBuilder;
 
 public class Base3Example extends BaseComponent3 {
 	
-	/*
-	 * GET1: https://keytodorestapi.herokuapp.com//api/{id}
-	 * GET All: https://keytodorestapi.herokuapp.com/api
-	 * POST: https://keytodorestapi.herokuapp.com/api/save
-	 * PUT: https://keytodorestapi.herokuapp.com/api/todos/{id}
-	 * DELETE: https://keytodorestapi.herokuapp.com/api/delete/{id}
-	 * 
-	 *  		requestSpec=new RequestSpecBuilder()
-				.setBaseUri("https://keytodorestapi.herokuapp.com/")
-				.setBasePath("api/")
-				.setContentType(ContentType.JSON)
-				.addHeader("accept", "application/json")
-				.build();
-	}
-	 * 
-	 */
-	
 	String id;
 
 	@Test   //cele fara prioritate sunt primele executate in ordine alfabetica
