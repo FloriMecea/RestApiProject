@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import utils.DataBuilder;
+import utils.DataBuilder_Tema9;
 
 public class Curs9_Tema {
 	String token;
@@ -23,7 +24,7 @@ public class Curs9_Tema {
 	public void post1() {
 		Response resp = given().
 				contentType(ContentType.JSON).
-				body(DataBuilder.buildUser().toJSONString()).
+				body(DataBuilder_Tema9.buildUser().toJSONString()).
 				post("https://dev-todo.herokuapp.com/api/auth").
 				then().
 				statusCode(200).
@@ -44,7 +45,7 @@ public class Curs9_Tema {
 	public void post2() {
 		Response resp = given().
 				contentType(ContentType.JSON).
-				body(DataBuilder.buildToDo().toJSONString()).
+				body(DataBuilder_Tema9.buildToDo().toJSONString()).
 				post("https://dev-todo.herokuapp.com/api/auth/save").
 				then().
 				statusCode(401).
@@ -63,7 +64,7 @@ public class Curs9_Tema {
 		Response resp = given().
 				contentType(ContentType.JSON).
 				header("Token",token).
-				body(DataBuilder.buildToDo().toJSONString()).
+				body(DataBuilder_Tema9.buildToDo().toJSONString()).
 				post("https://dev-todo.herokuapp.com/api/auth/save").
 				then().
 				statusCode(200).
