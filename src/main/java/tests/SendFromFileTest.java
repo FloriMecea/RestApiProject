@@ -50,18 +50,19 @@ public class SendFromFileTest extends BaseComponent2{
 			System.out.println(employeeList);
 			
 		//5. Luam un obiect Json individual din JSONArray (JSONArray este compus din JSONObject
-			JSONObject employeeObject= (JSONObject) employeeList.get(0);
+			//cu json object ca sa ajungi la un element de te intereseaza e nevoie sa faci mai multi pasi decat la json path
+			JSONObject employeeObject= (JSONObject) employeeList.get(0);  //pasul1
 			System.out.println(employeeObject);
 			
-			JSONObject employeeAttribute= (JSONObject) employeeObject.get("employee");
-			System.out.println(employeeAttribute.get("company"));
+			JSONObject employeeAttribute= (JSONObject) employeeObject.get("employee"); //pasul 2
+			System.out.println(employeeAttribute.get("company"));  //pasul3
 			
 			System.out.println("---------------------------------");
 			
 			File jsonFile=new File("data3_curs7.json");
 			JsonPath jsonPath=JsonPath.from(jsonFile);
 			System.out.println(jsonPath.getString("[0]"));
-			System.out.println(jsonPath.getString("[0].employee.company"));
+			System.out.println(jsonPath.getString("[0].employee.company"));  //pe cand la json path poti face asta dintr-un singur pas
 			
 			//folosim datatype JSONObject cand vrem sa cream/trimitem 
 			//cand vrei sa asertezi/citesti se foloseste jspath -asert de pe post sau get request
