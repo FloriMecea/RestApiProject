@@ -17,10 +17,12 @@ import utils.DataBuilder_Tema9;
 
 public class Curs9_Tema {
 	String token;
-	String id_post;
+	String id_post,id_post3;
 
 	@Test (priority=1)
 	public void post1() {
+		
+		System.out.println("-----------------POST1---------------------------");
 		Response resp = given().
 				contentType(ContentType.JSON).
 				body(DataBuilder_Tema9.buildUser().toJSONString()).
@@ -42,6 +44,7 @@ public class Curs9_Tema {
 
 	@Test (priority=2)
 	public void post2() {
+		System.out.println("-----------------POST2---------------------------");
 		Response resp = given().
 				contentType(ContentType.JSON).
 				body(DataBuilder_Tema9.buildToDo().toJSONString()).
@@ -60,6 +63,7 @@ public class Curs9_Tema {
 	
 	@Test (priority=3)
 	public void post3() {
+		System.out.println("-----------------POST3---------------------------");
 		Response resp = given().
 				contentType(ContentType.JSON).
 				header("Token",token).
@@ -70,7 +74,7 @@ public class Curs9_Tema {
 				extract().response();
 		
 		System.out.println(resp.asPrettyString());
-		String id_post3=resp.jsonPath().getString("id");
+		id_post3=resp.jsonPath().getString("id");
 	  	
 		System.out.println("id-ul este: "+id_post3);
 		assertThat(id_post3, is(not(equalTo (null))));
@@ -80,7 +84,7 @@ public class Curs9_Tema {
 	
 	@Test(priority=4)
 	public void deleteBooking1() {
-		
+		System.out.println("-----------------DELETE1---------------------------");
 		
 		Response resp = given().
 				contentType(ContentType.JSON).
@@ -99,14 +103,15 @@ public class Curs9_Tema {
 	
 	@Test(priority=5)
 	public void deleteBooking2() {
+		System.out.println("-----------------DELETE2---------------------------");
 		
 		String wrongToken="aaaa";
 		Response resp = given().
 				header("Token",wrongToken).
 				contentType(ContentType.JSON).
-				delete("https://dev-todo.herokuapp.com/api/auth/delete/"+id_post).
+				delete("https://dev-todo.herokuapp.com/api/auth/delete/"+id_post3).
 				then().
-				statusCode(503).
+				statusCode(403).
 				extract().response();
 		
 		System.out.println(resp.asPrettyString());
@@ -120,13 +125,13 @@ public class Curs9_Tema {
 	@Test(priority=6)
 public void deleteBooking3() {
 		
-		
+		System.out.println("-----------------DELETE3---------------------------");
 		Response resp = given().
 				header("Token",token).
 				contentType(ContentType.JSON).
-				delete("https://dev-todo.herokuapp.com/api/auth/delete/"+id_post).
+				delete("https://dev-todo.herokuapp.com/api/auth/delete/"+id_post3).
 				then().
-			//	statusCode(401).
+				statusCode(200).
 				extract().response();
 		
 		System.out.println(resp.asPrettyString());
