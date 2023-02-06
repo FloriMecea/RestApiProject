@@ -7,7 +7,7 @@ public class TestUserDetails {
 	@Test
 	public void testCeva() {
 		UserDetails ud=new UserDetails();
-
+      ud.setEmail("aaaa");
 		
 	}
 }
