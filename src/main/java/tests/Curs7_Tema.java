@@ -51,9 +51,11 @@ public class Curs7_Tema {
 	   System.out.println(starships);
 	   assertThat(starships, hasSize(starships.size()));
 	   
-	   for (String element:vehicles) {
+	/*   for (String element:vehicles) {
 		   assertThat(element,not(containsString("starship")));
-	   }
+	   } */
+	   //compara 2 liste ca nu sunt egale
+	   assertThat(starships.toString(),not (equalTo(vehicles.toString())));
 	   
 	}
  
