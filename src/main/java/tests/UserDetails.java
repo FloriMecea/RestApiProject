@@ -5,10 +5,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDetails {
- private String firstName;
- private String email;
- private String city;
- private String gender;
+ public String firstName;
+ public String email;
+ public String city;
+ public String gender;
 
 
  
